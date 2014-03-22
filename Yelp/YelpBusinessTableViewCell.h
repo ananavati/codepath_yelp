@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking.h>
 
 #import "YelpBusiness.h"
 
 @interface YelpBusinessTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *businessName;
-@property (weak, nonatomic) IBOutlet UIImageView *movieImageView;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *yelpImageView;
 
 - (YelpBusinessTableViewCell *) setModel:(YelpBusiness *) business;
 

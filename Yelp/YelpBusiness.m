@@ -21,9 +21,8 @@
     self = [super init];
     
 	if (self) {
-		self.business = business;
-        
-		[self setName:self.business[@"name"]];
+		[self setName:business[@"name"]];
+        [self setImageUrl:business[@"image_url"]];
 //		[self setSynopsis:self.movie[@"synopsis"]];
 //		[self setThumbUrl:self.movie[@"posters"][@"profile"]];
 //		[self setPosterUrl:self.movie[@"posters"][@"original"]];

@@ -26,8 +26,8 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="businessName" destination="h1C-UV-G2D" id="jKV-vi-PJW"/>
-                <outlet property="movieImageView" destination="tyN-L7-1Ca" id="nw8-TQ-NVG"/>
+                <outlet property="name" destination="h1C-UV-G2D" id="tX4-ho-Qqv"/>
+                <outlet property="yelpImageView" destination="tyN-L7-1Ca" id="b9X-4W-R1K"/>
             </connections>
         </tableViewCell>
     </objects>

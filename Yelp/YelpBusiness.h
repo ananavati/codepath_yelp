@@ -10,7 +10,8 @@
 
 @interface YelpBusiness : NSObject
 
-@property (weak, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *imageUrl;
 
 - (YelpBusiness *)initWithDictionary: (NSDictionary *) business;
 
