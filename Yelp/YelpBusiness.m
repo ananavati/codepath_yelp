@@ -11,6 +11,7 @@
 @interface YelpBusiness ()
 
 @property NSDictionary *business;
+@property NSArray *categories;
 
 @end
 
@@ -23,17 +24,20 @@
 	if (self) {
 		[self setName:business[@"name"]];
         [self setImageUrl:business[@"image_url"]];
-//		[self setSynopsis:self.movie[@"synopsis"]];
-//		[self setThumbUrl:self.movie[@"posters"][@"profile"]];
-//		[self setPosterUrl:self.movie[@"posters"][@"original"]];
-//        
-//		self.castMembers = [[NSMutableArray alloc] init];
-//		for (NSDictionary *cast in self.movie[@"abridged_cast"]) {
-//			[self.castMembers addObject:cast[@"name"]];
-//		}
+        [self setRatingImageUrl:business[@"rating_img_url_small"]];
+        [self setReviewsCount:[business[@"review_count"] intValue]];
+        [self setAddress:business[@"location"][@"address"][0]];
+        
+        self.categories = business[@"categories"];
 	}
     
 	return self;
 }
+
+- (NSString *) categoriesText
+{
+	return [self.categories[0] componentsJoinedByString:@", "];
+}
+
 
 @end

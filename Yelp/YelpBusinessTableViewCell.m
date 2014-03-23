@@ -24,7 +24,7 @@
     // Initialization code
 }
 
-- (void) getImage:(NSString *) imageUrl
+- (void) getImage:(NSString *) imageUrl imagetype:(NSString *) imageType
 {
     NSURL *URL = [NSURL URLWithString:imageUrl];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:URL];
@@ -32,8 +32,14 @@
     
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"Response: %@", responseObject);
-        self.yelpImageView.image = responseObject;
+        if ([imageType  isEqual: @"yelp"])
+        {
+            self.yelpImageView.image = responseObject;
+        }
+        else
+        {
+            self.ratingImageView.image = responseObject;
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Image error: %@", error);
@@ -45,7 +51,11 @@
 - (YelpBusinessTableViewCell *) setModel:(YelpBusiness *) business
 {
     [self.name setText:business.name];
-    [self getImage:business.imageUrl];
+    [self getImage:business.imageUrl imagetype:@"yelp"];
+    [self getImage:business.ratingImageUrl imagetype:@"rating"];
+    [self.reviewCountLabel setText:[NSString stringWithFormat:@"%d Reviews", business.reviewsCount]];
+    [self.addressLabel setText:business.address];
+    [self.categoryLabel setText:business.categoriesText];
     
     return self;
 }

@@ -13,4 +13,6 @@
 
 @interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate>
 
+@property (strong) YelpBusinessTableViewCell *cellPrototype;
+
 @end

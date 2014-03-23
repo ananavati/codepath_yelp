@@ -15,6 +15,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *yelpImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *ratingImageView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dollarValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *reviewCountLabel;
+
 
 - (YelpBusinessTableViewCell *) setModel:(YelpBusiness *) business;
 

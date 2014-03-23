@@ -12,7 +12,11 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *imageUrl;
+@property (strong, nonatomic) NSString *ratingImageUrl;
+@property (nonatomic, assign) NSInteger reviewsCount;
+@property (strong, nonatomic) NSString *address;
 
+- (NSString *) categoriesText;
 - (YelpBusiness *)initWithDictionary: (NSDictionary *) business;
 
 @end

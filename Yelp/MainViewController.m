@@ -14,6 +14,8 @@ NSString * const kYelpConsumerSecret    = @"26VbkWDhr7g35lwAQJxmXtzK_CI";
 NSString * const kYelpToken             = @"T17I2xDRtRo21WX_5WtHq8yLo9gCRqqo";
 NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
 
+#define kLabelFrameMaxSize CGSizeMake(265.0, 200.0)
+
 @interface MainViewController ()
 
 @property (strong, nonatomic) NSMutableArray *businesses;
@@ -37,7 +39,6 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
 - (void) initialize
 {
     self.businesses = [[NSMutableArray alloc] init];
-    
     [self getDataFromYelp];
 }
 
@@ -49,18 +50,39 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
 {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view from its nib.
-
+    self.searchIndexTableView.dataSource = self;
+    self.searchIndexTableView.delegate = self;
+    
+    static NSString *cellIdentifier = @"YelpBusinessTableViewCell";
+    
     // register the table view cell with the table view
-    UINib *yelpBusinessTableViewCellNib = [UINib nibWithNibName:@"YelpBusinessTableViewCell" bundle:nil];
-    [self.searchIndexTableView registerNib:yelpBusinessTableViewCellNib forCellReuseIdentifier:@"YelpBusinessTableViewCell"];
+    UINib *yelpBusinessTableViewCellNib = [UINib nibWithNibName:cellIdentifier bundle:nil];
+    [self.searchIndexTableView registerNib:yelpBusinessTableViewCellNib forCellReuseIdentifier:cellIdentifier];
 
+    self.cellPrototype = [self.searchIndexTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self initialize];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"YelpBusinessTableViewCell";
+    YelpBusinessTableViewCell *cell = [self.searchIndexTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell && self.businesses.count > 0) {
+        YelpBusiness *yelpBusiness = self.businesses[indexPath.row];
+        [cell setModel:yelpBusiness];
+        return 200.0f;
+    }
+    return 150.0f;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
