@@ -15,7 +15,10 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = [[MainViewController alloc] init];
+    // initialize the nav bar and the view
+    MainViewController *view = [[MainViewController alloc] init];
+    UINavigationController *navView = [[UINavigationController alloc] initWithRootViewController:view];
+    self.window.rootViewController = navView;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

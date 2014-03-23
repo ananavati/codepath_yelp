@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "YelpBusinessTableViewCell.h"
 #import "YelpBusiness.h"
 
-@interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate>
+@interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate, CLLocationManagerDelegate>
 
 @property (strong) YelpBusinessTableViewCell *cellPrototype;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end

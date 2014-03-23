@@ -23,6 +23,9 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
 @property (nonatomic, strong) YelpClient *client;
 @property (weak, nonatomic) IBOutlet UITableView *searchIndexTableView;
 
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) UISearchBar *searchBar;
+
 @end
 
 @implementation MainViewController
@@ -40,6 +43,7 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
 {
     self.businesses = [[NSMutableArray alloc] init];
     [self getDataFromYelp];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -60,12 +64,35 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
     [self.searchIndexTableView registerNib:yelpBusinessTableViewCellNib forCellReuseIdentifier:cellIdentifier];
 
     self.cellPrototype = [self.searchIndexTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    [self showSearchBar];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self initialize];
+- (void) showSearchBar {
+    UISearchBar *tempSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.searchIndexTableView.frame.size.width, 0)];
+    self.searchBar = tempSearchBar;
+    self.searchBar.delegate = self;
+    self.searchBar.placeholder = @"Search Yelp...";
+    [self.searchBar sizeToFit];
+    
+    
+    float buttonWidth = 44;
+    float buttonHeight = 44;
+    
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.searchIndexTableView.frame.size.height/2 - buttonHeight/2, buttonWidth, buttonHeight)];
+    [leftButton setTitle:@"filter" forState:UIControlStateNormal];
+    [leftButton setShowsTouchWhenHighlighted:YES];
+//    leftButton.alpha = 0;
+    
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
+    [barButton setCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = barButton;
+    
+    self.navigationItem.titleView = self.searchBar;
+}
+
+- (void) hideSearchBar {
+    self.navigationItem.titleView = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,13 +102,15 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"YelpBusinessTableViewCell";
-    YelpBusinessTableViewCell *cell = [self.searchIndexTableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell && self.businesses.count > 0) {
-        YelpBusiness *yelpBusiness = self.businesses[indexPath.row];
-        [cell setModel:yelpBusiness];
-        return 200.0f;
-    }
+//    static NSString *cellIdentifier = @"YelpBusinessTableViewCell";
+//    YelpBusinessTableViewCell *cell = [self.searchIndexTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    if (cell && self.businesses.count > 0) {
+////        YelpBusiness *yelpBusiness = self.businesses[indexPath.row];
+////        [cell setModel:yelpBusiness];
+//        return cell.frame.size.height;
+//    }
+    
+    // TODO : arpan ask Tim what is the best practice to calculate the height
     return 150.0f;
 }
 
