@@ -8,10 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GenericUISliderTableViewCellDelegate;
+
 @interface GenericUISliderTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *slider;
+@property (weak, nonatomic) IBOutlet UISwitch *onoffSwitch;
 
-- (void) setupSliderCell:(NSString *) title;
+@property  (nonatomic, weak) id <GenericUISliderTableViewCellDelegate> delegate;
+@property (weak, nonatomic) NSString *switchIdentifier;
+
+- (void) setupSwitchCell:(NSString *)title key:(NSString *)switchIdentifier;
+@end
+
+@protocol GenericUISliderTableViewCellDelegate <NSObject>
+
+- (void) switchFlipped:(id)sender key:(NSString *)key;
+
 @end

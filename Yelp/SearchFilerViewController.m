@@ -69,28 +69,32 @@
                          @"type":@"switches",
                          @"cellIdentifier": @"GenericUISliderTableViewCell",
                          @"numberOfRowsInSection": [NSNumber numberWithInt:4],
-                         @"list":@[@"Open Now",@"Hot & New",@"Offering a Deal",@"Delivery"]
+                         @"list":@[@"Open Now",@"Hot & New",@"Offering a Deal",@"Delivery"],
+                         @"keys":@[@"open_now",@"hot_and_new",@"offering_a_deal",@"delivery"]
                          },
                        @{
                          @"name":@"Distance",
                          @"type":@"expandable",
                          @"cellIdentifier": @"GenericUISliderTableViewCell",
                          @"numberOfRowsInSection": [NSNumber numberWithInt:5],
-                         @"list":@[@"Auto",@"2 blocks",@"6 blocks",@"1 mile",@"5 miles"]
+                         @"list":@[@"Auto",@"2 blocks",@"6 blocks",@"1 mile",@"5 miles"],
+                         @"keys":@[@"auto",@"2_blocks",@"6_blocks",@"1_mile",@"5_miles"]
                          },
                        @{
                          @"name":@"Sort By",
                          @"type":@"expandable",
                          @"cellIdentifier": @"GenericUISliderTableViewCell",
                          @"numberOfRowsInSection": [NSNumber numberWithInt:4],
-                         @"list":@[@"Best Match",@"Distance",@"Rating",@"Most Reviewed"]
+                         @"list":@[@"Best Match",@"Distance",@"Rating",@"Most Reviewed"],
+                         @"keys":@[@"best_match",@"distance",@"rating",@"most_reviewed"]
                          },
                        @{
                          @"name":@"General Features",
                          @"type":@"expandable",
                          @"cellIdentifier": @"GenericUISliderTableViewCell",
                          @"numberOfRowsInSection": [NSNumber numberWithInt:10],
-                         @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards",@"Wheelchair Accessible",@"Full Bar",@"Beer & Wine only",@"Happy Hour",@"Free Wi-Fi",@"Paid Wi-fi"]
+                         @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards",@"Wheelchair Accessible",@"Full Bar",@"Beer & Wine only",@"Happy Hour",@"Free Wi-Fi",@"Paid Wi-fi"],
+                         @"keys":@[@"best_match",@"distance",@"rating",@"most_reviewed"]
                          }, nil
                        ];
 
@@ -118,7 +122,13 @@
 
 -(void) priceTableViewCellDidFinish:(id)sender
 {
-    
+    // implement here
+}
+
+- (void) switchFlipped:(id)sender key:(NSString *)key
+{
+    // add key to the build search query param string
+    // pass the search query param strign to yelp api client
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,11 +142,11 @@
     
     if ([cell isKindOfClass:[PriceTableViewCell class]]) {
         [cell priceSegments:self.categories[indexPath.section][@"list"]];
-//        PriceTableViewCell *cell;
         [cell setDelegate:self];
     }
     else if ([cell isKindOfClass:[GenericUISliderTableViewCell class]]) {
-        [cell setupSliderCell:self.categories[indexPath.section][@"list"][indexPath.row]];
+        [cell setupSwitchCell:self.categories[indexPath.section][@"list"][indexPath.row] key:self.categories[indexPath.section][@"keys"][indexPath.row]];
+        [cell setDelegate:self];
     }
     
     return cell;

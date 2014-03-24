@@ -13,6 +13,8 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    [self.onoffSwitch addTarget:self action: @selector(flip:) forControlEvents:UIControlEventValueChanged];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -24,9 +26,18 @@
 
 #pragma mark - slider table view cell methods
 
-- (void) setupSliderCell:(NSString *) title
+- (void) setupSwitchCell:(NSString *)title key:(NSString *)switchIdentifier
 {
     [self.titleLabel setText:title];
+    [self setSwitchIdentifier:switchIdentifier];
 }
 
+- (void) flip:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(switchFlipped:key:)]) {
+        [self.delegate switchFlipped:sender key:self.switchIdentifier];
+    }
+    
+//    if (self.onoffSwitch.on) NSLog(@"On");
+//    else  NSLog(@"Off");
+}
 @end

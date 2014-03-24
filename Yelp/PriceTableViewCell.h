@@ -19,12 +19,7 @@
 @end
 
 @protocol PriceTableViewCellDelegate <NSObject>
-
 - (void) priceTableViewCellDidFinish:(id)sender;
-
-@optional
--(void)optionalDelegateMethodOne;
-
 @end
 
 
