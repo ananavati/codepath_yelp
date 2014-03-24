@@ -11,6 +11,7 @@
 
 #import "YelpBusinessTableViewCell.h"
 #import "YelpBusiness.h"
+#import "SearchFilerViewController.h"
 
 @interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate, CLLocationManagerDelegate>
 

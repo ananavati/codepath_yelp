@@ -74,21 +74,15 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search Yelp...";
     [self.searchBar sizeToFit];
-    
-    
-    float buttonWidth = 44;
-    float buttonHeight = 44;
-    
-    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.searchIndexTableView.frame.size.height/2 - buttonHeight/2, buttonWidth, buttonHeight)];
-    [leftButton setTitle:@"filter" forState:UIControlStateNormal];
-    [leftButton setShowsTouchWhenHighlighted:YES];
-//    leftButton.alpha = 0;
-    
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] init];
-    [barButton setCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = barButton;
-    
     self.navigationItem.titleView = self.searchBar;
+    
+    self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered target:self action:@selector(menuItemSelected:)];
+}
+
+- (void) menuItemSelected:(id)sender
+{
+    SearchFilerViewController *searchFilterController = [[SearchFilerViewController alloc] init];
+    [self.navigationController pushViewController:searchFilterController animated:YES];
 }
 
 - (void) hideSearchBar {
