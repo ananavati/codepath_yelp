@@ -116,6 +116,11 @@
     return 55.0f;
 }
 
+-(void) priceTableViewCellDidFinish:(id)sender
+{
+    
+}
+
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = self.categories[indexPath.section][@"cellIdentifier"];
@@ -127,6 +132,8 @@
     
     if ([cell isKindOfClass:[PriceTableViewCell class]]) {
         [cell priceSegments:self.categories[indexPath.section][@"list"]];
+//        PriceTableViewCell *cell;
+        [cell setDelegate:self];
     }
     else if ([cell isKindOfClass:[GenericUISliderTableViewCell class]]) {
         [cell setupSliderCell:self.categories[indexPath.section][@"list"][indexPath.row]];

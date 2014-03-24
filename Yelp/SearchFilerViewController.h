@@ -11,6 +11,6 @@
 #import "PriceTableViewCell.h"
 #import "GenericUISliderTableViewCell.h"
 
-@interface SearchFilerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SearchFilerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, PriceTableViewCellDelegate>
 
 @end

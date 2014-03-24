@@ -8,8 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PriceTableViewCellDelegate;
+
 @interface PriceTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UISegmentedControl *priceSegments;
 
+@property  (nonatomic, weak) id <PriceTableViewCellDelegate> delegate;
+
 - (PriceTableViewCell *) priceSegments:(NSArray *) segments;
 @end
+
+@protocol PriceTableViewCellDelegate <NSObject>
+
+- (void) priceTableViewCellDidFinish:(id)sender;
+
+@optional
+-(void)optionalDelegateMethodOne;
+
+@end
+
+

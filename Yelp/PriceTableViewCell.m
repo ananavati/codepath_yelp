@@ -53,7 +53,9 @@
 
 //Action method executes when user touches the button
 -(void) pickOne:(id)sender {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(priceTableViewCellDidFinish:)]) {
+        [self.delegate priceTableViewCellDidFinish:sender];
+    }
 }
 
 @end
