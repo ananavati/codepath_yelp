@@ -32,20 +32,24 @@
     // register the table view cell with the table view
     UINib *tableViewCellNib = [UINib nibWithNibName:cellIdentifier bundle:nil];
     [self.searchFilterView registerNib:tableViewCellNib forCellReuseIdentifier:cellIdentifier];
-    
-//    self.cellPrototype = [self.searchFilterView dequeueReusableCellWithIdentifier:cellIdentifier];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
     self.searchFilterView.dataSource = self;
     self.searchFilterView.delegate = self;
     
     [self registerNib:@"PriceTableViewCell"];
     [self registerNib:@"GenericUISliderTableViewCell"];
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(onDoneButton:)];
+    self.navigationItem.rightBarButtonItem = doneButton;
+}
+
+- (void)onDoneButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

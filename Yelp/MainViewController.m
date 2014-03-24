@@ -82,7 +82,10 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
 - (void) menuItemSelected:(id)sender
 {
     SearchFilerViewController *searchFilterController = [[SearchFilerViewController alloc] init];
-    [self.navigationController pushViewController:searchFilterController animated:YES];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:searchFilterController];
+    navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical; // Rises from below
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void) hideSearchBar {
