@@ -13,7 +13,7 @@
 #import "YelpBusiness.h"
 #import "SearchFilerViewController.h"
 
-@interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate, CLLocationManagerDelegate>
+@interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate, CLLocationManagerDelegate, SearchFilerViewControllerDelegate>
 
 @property (strong) YelpBusinessTableViewCell *cellPrototype;
 

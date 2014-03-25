@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *searchFilterView;
 @property (strong, nonatomic) NSMutableArray *categories;
 
+@property (nonatomic, strong) NSDictionary *queryParameters;
+
 @end
 
 @implementation SearchFilerViewController
@@ -49,6 +51,8 @@
 }
 
 - (void)onDoneButton:(id)sender {
+    [self.delegate addItemViewController:self didFinishEnteringItem:self.queryParameters];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -69,20 +73,20 @@
                          @"list":@[@"$",@"$$",@"$$$",@"$$$$"]
                          },
                        @{
+                         @"name":@"General Features",
+                         @"type":@"expandable",
+                         @"cellIdentifier": @"GenericUISliderTableViewCell",
+                         @"numberOfRowsInSection": [NSNumber numberWithInt:2],
+                         @"list":@[@"Champagne Bars",@"Cocktail Bars"],
+                         @"keys":@[@"lounges",@"cocktailbars"]
+                         },
+                       @{
                          @"name":@"Most Popular",
                          @"type":@"switches",
                          @"cellIdentifier": @"GenericUISliderTableViewCell",
                          @"numberOfRowsInSection": [NSNumber numberWithInt:4],
                          @"list":@[@"Open Now",@"Hot & New",@"Offering a Deal",@"Delivery"],
-                         @"keys":@[@"open_now",@"hot_and_new",@"offering_a_deal",@"delivery"]
-                         },
-                       @{
-                         @"name":@"Distance",
-                         @"type":@"expandable",
-                         @"cellIdentifier": @"GenericUISliderTableViewCell",
-                         @"numberOfRowsInSection": [NSNumber numberWithInt:5],
-                         @"list":@[@"Auto",@"2 blocks",@"6 blocks",@"1 mile",@"5 miles"],
-                         @"keys":@[@"auto",@"2_blocks",@"6_blocks",@"1_mile",@"5_miles"]
+                         @"keys":@[@"open_now",@"hot_and_new",@"deals_filter",@"delivery"]
                          },
                        @{
                          @"name":@"Sort By",
@@ -90,14 +94,6 @@
                          @"cellIdentifier": @"GenericUISliderTableViewCell",
                          @"numberOfRowsInSection": [NSNumber numberWithInt:4],
                          @"list":@[@"Best Match",@"Distance",@"Rating",@"Most Reviewed"],
-                         @"keys":@[@"best_match",@"distance",@"rating",@"most_reviewed"]
-                         },
-                       @{
-                         @"name":@"General Features",
-                         @"type":@"expandable",
-                         @"cellIdentifier": @"GenericUISliderTableViewCell",
-                         @"numberOfRowsInSection": [NSNumber numberWithInt:4],
-                         @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards"],
                          @"keys":@[@"best_match",@"distance",@"rating",@"most_reviewed"]
                          }, nil
                        ];
@@ -156,6 +152,7 @@
 {
     // add key to the build search query param string
     // pass the search query param strign to yelp api client
+    self.queryParameters = @{@"categories_filter": key};
 }
 
 @end

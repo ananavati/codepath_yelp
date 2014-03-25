@@ -11,6 +11,17 @@
 #import "PriceTableViewCell.h"
 #import "GenericUISliderTableViewCell.h"
 
+@class SearchFilerViewController;
+
+@protocol SearchFilerViewControllerDelegate <NSObject>
+
+@optional
+- (void)addItemViewController:(SearchFilerViewController *)controller didFinishEnteringItem:(NSDictionary *)item;
+@end
+
+
 @interface SearchFilerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, PriceTableViewCellDelegate>
+
+@property (nonatomic, weak) id <SearchFilerViewControllerDelegate> delegate;
 
 @end

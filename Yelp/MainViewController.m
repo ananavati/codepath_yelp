@@ -20,11 +20,15 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
 
 @property (strong, nonatomic) NSMutableArray *businesses;
 
+@property (strong, nonatomic) NSMutableArray *searchResults;
+
 @property (nonatomic, strong) YelpClient *client;
 @property (weak, nonatomic) IBOutlet UITableView *searchIndexTableView;
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) UISearchBar *searchBar;
+
+@property (strong, nonatomic) NSDictionary *queryParams;
 
 @end
 
@@ -42,7 +46,7 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
 - (void) initialize
 {
     self.businesses = [[NSMutableArray alloc] init];
-    [self getDataFromYelp];
+    [self getDataFromYelp:nil];
 
 }
 
@@ -73,10 +77,31 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
     self.searchBar = tempSearchBar;
     self.searchBar.delegate = self;
     self.searchBar.placeholder = @"Search Yelp...";
+    self.searchBar.showsCancelButton = YES;
     [self.searchBar sizeToFit];
     self.navigationItem.titleView = self.searchBar;
     
     self.navigationItem.leftBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered target:self action:@selector(menuItemSelected:)];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.searchResults = nil;
+    [self.searchBar resignFirstResponder];
+}
+
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    if (!self.searchResults.count) {
+        NSDictionary *parameters;
+        
+        if (self.queryParams) {
+            parameters = @{@"term": self.searchBar.text, @"category_filter": [self.queryParams objectForKey:@"categories_filter"], @"location" : @"San Francisco"};
+        } else {
+            parameters = @{@"term": self.searchBar.text, @"location" : @"San Francisco"};
+        }
+
+        [self getDataFromYelp:parameters];
+    }
 }
 
 - (void) menuItemSelected:(id)sender
@@ -84,6 +109,8 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
     SearchFilerViewController *searchFilterController = [[SearchFilerViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:searchFilterController];
     navigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical; // Rises from below
+    
+    searchFilterController.delegate = self;
     
     [self presentViewController:navigationController animated:YES completion:nil];
 }
@@ -140,18 +167,30 @@ NSString * const kYelpTokenSecret       = @"HHlCJ4c09EGcJg2jjnzo3Bw1_NA";
     
 }
 
-- (void) getDataFromYelp
+- (void) getDataFromYelp:(NSDictionary *)queryParams
 {
     if (self) {
         self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
         
-        [self.client searchWithTerm:@"Thai" success:^(AFHTTPRequestOperation *operation, id response) {
-            [self apiSuccess:response];
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self apiError:error];
-        }];
+        if (!queryParams) {
+            [self.client searchWithTerm:@"Thai" customParams:nil success:^(AFHTTPRequestOperation *operation, id response) {
+                [self apiSuccess:response];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [self apiError:error];
+            }];
+        } else {
+            [self.client searchWithTerm:@"Thai" customParams:queryParams success:^(AFHTTPRequestOperation *operation, id response) {
+                [self apiSuccess:response];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [self apiError:error];
+            }];
+        }
     }
+}
+
+- (void)addItemViewController:(SearchFilerViewController *)controller didFinishEnteringItem:(NSDictionary *)item
+{
+    self.queryParams = item;
 }
 
 
