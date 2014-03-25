@@ -96,8 +96,8 @@
                          @"name":@"General Features",
                          @"type":@"expandable",
                          @"cellIdentifier": @"GenericUISliderTableViewCell",
-                         @"numberOfRowsInSection": [NSNumber numberWithInt:10],
-                         @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards",@"Wheelchair Accessible",@"Full Bar",@"Beer & Wine only",@"Happy Hour",@"Free Wi-Fi",@"Paid Wi-fi"],
+                         @"numberOfRowsInSection": [NSNumber numberWithInt:4],
+                         @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards"],
                          @"keys":@[@"best_match",@"distance",@"rating",@"most_reviewed"]
                          }, nil
                        ];
@@ -129,12 +129,6 @@
     // implement here
 }
 
-- (void) switchFlipped:(id)sender key:(NSString *)key
-{
-    // add key to the build search query param string
-    // pass the search query param strign to yelp api client
-}
-
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = self.categories[indexPath.section][@"cellIdentifier"];
@@ -154,6 +148,14 @@
     }
     
     return cell;
+}
+
+#pragma mark - switch cell delegate methods
+
+- (void) switchFlipped:(id)sender key:(NSString *)key
+{
+    // add key to the build search query param string
+    // pass the search query param strign to yelp api client
 }
 
 @end
