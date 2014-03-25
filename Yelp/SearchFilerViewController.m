@@ -44,7 +44,7 @@
     self.searchFilterView.delegate = self;
     
     [self registerNib:@"PriceTableViewCell"];
-    [self registerNib:@"GenericUISliderTableViewCell"];
+    [self registerNib:@"GenericUISwitchTableViewCell"];
     
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(onDoneButton:)];
     self.navigationItem.rightBarButtonItem = doneButton;
@@ -75,7 +75,7 @@
                        @{
                          @"name":@"General Features",
                          @"type":@"expandable",
-                         @"cellIdentifier": @"GenericUISliderTableViewCell",
+                         @"cellIdentifier": @"GenericUISwitchTableViewCell",
                          @"numberOfRowsInSection": [NSNumber numberWithInt:2],
                          @"list":@[@"Champagne Bars",@"Cocktail Bars"],
                          @"keys":@[@"lounges",@"cocktailbars"]
@@ -83,7 +83,7 @@
                        @{
                          @"name":@"Most Popular",
                          @"type":@"switches",
-                         @"cellIdentifier": @"GenericUISliderTableViewCell",
+                         @"cellIdentifier": @"GenericUISwitchTableViewCell",
                          @"numberOfRowsInSection": [NSNumber numberWithInt:4],
                          @"list":@[@"Open Now",@"Hot & New",@"Offering a Deal",@"Delivery"],
                          @"keys":@[@"open_now",@"hot_and_new",@"deals_filter",@"delivery"]
@@ -91,7 +91,7 @@
                        @{
                          @"name":@"Sort By",
                          @"type":@"expandable",
-                         @"cellIdentifier": @"GenericUISliderTableViewCell",
+                         @"cellIdentifier": @"GenericUISwitchTableViewCell",
                          @"numberOfRowsInSection": [NSNumber numberWithInt:4],
                          @"list":@[@"Best Match",@"Distance",@"Rating",@"Most Reviewed"],
                          @"keys":@[@"best_match",@"distance",@"rating",@"most_reviewed"]
@@ -138,7 +138,7 @@
         [cell priceSegments:self.categories[indexPath.section][@"list"]];
         [cell setDelegate:self];
     }
-    else if ([cell isKindOfClass:[GenericUISliderTableViewCell class]]) {
+    else if ([cell isKindOfClass:[GenericUISwitchTableViewCell class]]) {
         [cell setupSwitchCell:self.categories[indexPath.section][@"list"][indexPath.row] key:self.categories[indexPath.section][@"keys"][indexPath.row]];
         [cell setDelegate:self];
     }

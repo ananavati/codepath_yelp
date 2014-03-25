@@ -15,8 +15,8 @@
 		1743CC7418DF92600059FB09 /* SearchFilerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1743CC7218DF92600059FB09 /* SearchFilerViewController.xib */; };
 		1743CC7618DF97C50059FB09 /* PriceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1743CC7518DF97C50059FB09 /* PriceTableViewCell.xib */; };
 		1743CC7918DF99F00059FB09 /* PriceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1743CC7818DF99F00059FB09 /* PriceTableViewCell.m */; };
-		1743CC7F18DFAFB40059FB09 /* GenericUISliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1743CC7D18DFAFB40059FB09 /* GenericUISliderTableViewCell.m */; };
-		1743CC8018DFAFB40059FB09 /* GenericUISliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1743CC7E18DFAFB40059FB09 /* GenericUISliderTableViewCell.xib */; };
+		1743CC7F18DFAFB40059FB09 /* GenericUISwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1743CC7D18DFAFB40059FB09 /* GenericUISwitchTableViewCell.m */; };
+		1743CC8018DFAFB40059FB09 /* GenericUISwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1743CC7E18DFAFB40059FB09 /* GenericUISwitchTableViewCell.xib */; };
 		1743CC8318E15BE30059FB09 /* SearchObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1743CC8218E15BE30059FB09 /* SearchObject.m */; };
 		420474F618DC299500E88E07 /* YelpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 420474F518DC299500E88E07 /* YelpClient.m */; };
 		420474FB18DC2B2100E88E07 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 420474F918DC2B2100E88E07 /* MainViewController.m */; };
@@ -60,9 +60,9 @@
 		1743CC7518DF97C50059FB09 /* PriceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PriceTableViewCell.xib; sourceTree = "<group>"; };
 		1743CC7718DF99F00059FB09 /* PriceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceTableViewCell.h; sourceTree = "<group>"; };
 		1743CC7818DF99F00059FB09 /* PriceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceTableViewCell.m; sourceTree = "<group>"; };
-		1743CC7C18DFAFB40059FB09 /* GenericUISliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericUISliderTableViewCell.h; sourceTree = "<group>"; };
-		1743CC7D18DFAFB40059FB09 /* GenericUISliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericUISliderTableViewCell.m; sourceTree = "<group>"; };
-		1743CC7E18DFAFB40059FB09 /* GenericUISliderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenericUISliderTableViewCell.xib; sourceTree = "<group>"; };
+		1743CC7C18DFAFB40059FB09 /* GenericUISwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericUISwitchTableViewCell.h; sourceTree = "<group>"; };
+		1743CC7D18DFAFB40059FB09 /* GenericUISwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericUISwitchTableViewCell.m; sourceTree = "<group>"; };
+		1743CC7E18DFAFB40059FB09 /* GenericUISwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenericUISwitchTableViewCell.xib; sourceTree = "<group>"; };
 		1743CC8118E15BE30059FB09 /* SearchObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchObject.h; sourceTree = "<group>"; };
 		1743CC8218E15BE30059FB09 /* SearchObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchObject.m; sourceTree = "<group>"; };
 		420474F418DC299500E88E07 /* YelpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpClient.h; sourceTree = "<group>"; };
@@ -122,8 +122,8 @@
 				1743CC6118DE2DD70059FB09 /* YelpBusinessTableViewCell.m */,
 				1743CC7718DF99F00059FB09 /* PriceTableViewCell.h */,
 				1743CC7818DF99F00059FB09 /* PriceTableViewCell.m */,
-				1743CC7C18DFAFB40059FB09 /* GenericUISliderTableViewCell.h */,
-				1743CC7D18DFAFB40059FB09 /* GenericUISliderTableViewCell.m */,
+				1743CC7C18DFAFB40059FB09 /* GenericUISwitchTableViewCell.h */,
+				1743CC7D18DFAFB40059FB09 /* GenericUISwitchTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -168,7 +168,7 @@
 				1743CC5D18DE2D150059FB09 /* YelpBusinessTableViewCell.xib */,
 				1743CC7218DF92600059FB09 /* SearchFilerViewController.xib */,
 				1743CC7518DF97C50059FB09 /* PriceTableViewCell.xib */,
-				1743CC7E18DFAFB40059FB09 /* GenericUISliderTableViewCell.xib */,
+				1743CC7E18DFAFB40059FB09 /* GenericUISwitchTableViewCell.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -332,7 +332,7 @@
 				1743CC5E18DE2D150059FB09 /* YelpBusinessTableViewCell.xib in Resources */,
 				42FD6C5D18DC286B000BF2B9 /* Images.xcassets in Resources */,
 				1743CC7418DF92600059FB09 /* SearchFilerViewController.xib in Resources */,
-				1743CC8018DFAFB40059FB09 /* GenericUISliderTableViewCell.xib in Resources */,
+				1743CC8018DFAFB40059FB09 /* GenericUISwitchTableViewCell.xib in Resources */,
 				1743CC7618DF97C50059FB09 /* PriceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,7 +390,7 @@
 				1743CC6A18DE45860059FB09 /* ImageView.m in Sources */,
 				42FD6C5718DC286B000BF2B9 /* main.m in Sources */,
 				1743CC6618DE2EA70059FB09 /* YelpBusiness.m in Sources */,
-				1743CC7F18DFAFB40059FB09 /* GenericUISliderTableViewCell.m in Sources */,
+				1743CC7F18DFAFB40059FB09 /* GenericUISwitchTableViewCell.m in Sources */,
 				1743CC7918DF99F00059FB09 /* PriceTableViewCell.m in Sources */,
 				1743CC7318DF92600059FB09 /* SearchFilerViewController.m in Sources */,
 				1743CC8318E15BE30059FB09 /* SearchObject.m in Sources */,

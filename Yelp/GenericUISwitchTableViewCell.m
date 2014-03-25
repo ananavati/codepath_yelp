@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 codepath. All rights reserved.
 //
 
-#import "GenericUISliderTableViewCell.h"
+#import "GenericUISwitchTableViewCell.h"
 
-@implementation GenericUISliderTableViewCell
+@implementation GenericUISwitchTableViewCell
 
 - (void)awakeFromNib
 {
